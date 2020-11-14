@@ -52,7 +52,7 @@ int main(int argc, char **argv)
 {
    std::cout << "Hello World!" << std::endl;
 
-   Vehicle myVehicle(4); //This calls constructor Vehicle(int);
+   Vehicle myVehicle(4, 2); //This calls constructor Vehicle( int, int);
    std::cout << "I made a vehicle!" << std::endl;
 
 
