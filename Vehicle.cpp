@@ -35,6 +35,64 @@ Vehicle::Vehicle(Vehicle* copy)
 	cout << "copy by pointer" << endl;
 }
 
+
+Vehicle& Vehicle::operator=(const Vehicle& v)
+{
+	numWheels = v.numWheels;
+	numDoors = v.numDoors;
+	return *this;
+}
+
+bool Vehicle::operator==(const Vehicle& v)
+{
+	cout << numWheels << " " << v.numWheels << endl;
+	cout << numDoors << " " << v.numDoors << endl;
+
+	return numWheels == v.numWheels && numDoors == v.numDoors;
+}
+
+bool Vehicle::operator!=(const Vehicle& v)
+{
+	return numWheels != v.numWheels || numDoors != v.numDoors;
+}
+
+Vehicle& Vehicle::operator++()
+{
+	numWheels = numWheels + 1;
+	numDoors = numDoors + 1;
+	return *this;
+}
+
+Vehicle& Vehicle::operator++(int)
+{
+	Vehicle temp = *this;
+	++* this;
+	return temp;
+}
+
+Vehicle& Vehicle::operator--()
+{
+	numWheels = numWheels - 1;
+	numDoors = numDoors - 1;
+	return *this;
+}
+
+Vehicle& Vehicle::operator--(int)
+{
+	Vehicle temp = *this;
+	--* this;
+	return temp;
+}
+
+ostream& operator<<(ostream& os, const Vehicle& v)
+{
+	os << "Vehicle at address: " << &v <<
+		" numWheels: " << v.numWheels <<
+		" numDoors: " << v.numDoors << endl;
+	return os;
+}
+
+
 Vehicle::~Vehicle()
 {
 	cout << "In destructor" << endl;

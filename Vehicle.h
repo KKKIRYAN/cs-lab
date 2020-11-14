@@ -21,6 +21,21 @@ public:
 
 	void printVehicle(void);
 
+
+
+	Vehicle& operator=(const Vehicle&);
+
+	bool operator==(const Vehicle&);
+	bool operator!=(const Vehicle&);
+
+	Vehicle& operator++();
+	Vehicle& operator++(int);
+
+	Vehicle& operator--();
+	Vehicle& operator--(int);
+
+	friend ostream& operator<<(ostream&, const Vehicle& v);
+
 private:
 	int numWheels;
 	int numDoors;
