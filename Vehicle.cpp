@@ -63,25 +63,11 @@ Vehicle& Vehicle::operator++()
 	return *this;
 }
 
-Vehicle& Vehicle::operator++(int)
-{
-	Vehicle temp = *this;
-	++* this;
-	return temp;
-}
-
 Vehicle& Vehicle::operator--()
 {
 	numWheels = numWheels - 1;
 	numDoors = numDoors - 1;
 	return *this;
-}
-
-Vehicle& Vehicle::operator--(int)
-{
-	Vehicle temp = *this;
-	--* this;
-	return temp;
 }
 
 ostream& operator<<(ostream& os, const Vehicle& v)

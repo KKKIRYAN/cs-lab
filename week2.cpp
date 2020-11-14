@@ -2,17 +2,6 @@
 
 #include "Vehicle.h"
 
-/*
-
-4.	Implement 3 different public constructors:	(look at slides 28 & 29)
-a)	Vehicle( int w, int d ) // constructor for the number of wheels and doors
-You should be setting numWheels to w, and numDoors to d.
-
-b)	Vehicle( int w) // this should call constructor a) with parameters doors = 4, and wheels = w. In other words, call: Vehicle(4, w)
-
-c)	Vehicle() // empty constructor. This should call constructor b) with wheels = 4. Constructor c) should call b), which itself calls constructor a).
-
-*/
 
 
 using namespace std;
@@ -25,93 +14,27 @@ void CreateVehicle(Vehicle& v, int w = 4, int d = 2)
 }
 
 
+Vehicle* testVehicle(Vehicle* pVehicle, const char* vehicleName)
+{
+	cout << vehicleName << "¡¯s range is: " << pVehicle->calculateRange() << endl;
+	pVehicle->drive(150); //drive 150 km
+	cout << vehicleName << "¡¯s energy left is: " << pVehicle->percentEnergyRemaining() << endl;
+	cout << vehicleName << "¡¯s range is now: " << pVehicle->calculateRange() << endl;
+
+	return pVehicle;
+}
+
+
 int main(int argc, char** argv)
 {
-	Vehicle original;
-	Vehicle copy(original); // copy constructor by reference
+	//50L of gas, 7.1 L/100km
+	delete dynamic_cast<GasolineVehicle*>(testVehicle(new GasolineVehicle(50, 7.1), "Corolla"));
 
-	cout << "Original is: " << original << " copy is: " << copy << endl;
+	//42 L of gas, 4.3 L/100km, 8.8kWh, 22 kWh/100km
+	delete dynamic_cast<HybridVehicle*>(testVehicle(new HybridVehicle(42.0, 4.3, 8.8, 22.0), "Prius"));
 
-	cout << "Increment original: " << original++ << endl;
-	cout << "Increment copy:" << ++copy << endl;
-
-	cout << "Decrement original:" << --original << endl;
-	cout << "Decrement copy:" << copy-- << endl;
-
-	// should be true :
-	cout << "Compare equality 1: " << (original == copy) << endl;
-
-	//should be false:
-	cout << "Compare equality 2: " << (--original == ++copy) << endl;
-
-	//should be true:
-	cout << "Compare inequality: " << (original != copy) << endl;
-
-	//This should make original = copy, and then return a Vehicle for output:
-	cout << "Assignment operator: " << (original = copy) << endl;
-	return 0;
-}
-
-
-
-int main_v2(int argc, char** argv)
-{
-	Vehicle original;    //empty constructor no ( )
-
-	Vehicle copy(original); // copy constructor by reference
-	Vehicle secondCopy(&original); //copy constructor by pointer
-
-	copy.printVehicle();
-	CreateVehicle(copy, 2); //wheels is 2, everything else is default value
-	copy.printVehicle();
-	CreateVehicle(copy, 2, 3); //wheels is 2, doors is 3
-	copy.printVehicle();
-	copy = secondCopy;
-	copy.printVehicle();	// copy is same as second copy
-	return 0;
-}
-
-
-
-int main_v1(int argc, char **argv)
-{
-	
-	int d, w;
-	std::string ans;
-	Vehicle* pVehicle;
-
-	do {
-		cout << "enter number of doors" << endl;
-		cin >> d;
-		cout << "enter number of wheels" << endl;
-		cin >> w;
-
-		pVehicle = new Vehicle(w, d);
-		delete pVehicle;
-
-		cout << "Do you want to create a new vehicle or quit" << endl;
-		cin >> ans;
-	}
-	while (ans != "q");
-
-
-	Vehicle veh1; // This calls constructor Vehicle()
-	cout << "Vehicle takes " << sizeof(veh1) << endl;
-
-	Vehicle veh2(4); //This calls constructor Vehicle(int);
-	cout << "Vehicle takes " << sizeof(veh2) << endl;
-
-	Vehicle veh3(4, 2); //This calls constructor Vehicle( int, int);
-	cout << "Vehicle takes " << sizeof(veh3) << endl;
-
-	std::cout << "I made a vehicle!" << std::endl;
-
-	// Vehicle veh4 = veh3;
-
-	Vehicle secondCopy(&veh3);
-
-	// Vehicle* veh5 = &veh3;
-
+	//75 kWh, 16 kWh/100km
+	delete dynamic_cast<ElectricVehicle*>(testVehicle(new ElectricVehicle(75, 16), "Tesla 3"));
 
 	return 0;
 }
