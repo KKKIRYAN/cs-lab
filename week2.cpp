@@ -1,6 +1,6 @@
-
 #include<iostream>
 
+#include "Vehicle.h"
 
 /*
 
@@ -17,38 +17,35 @@ c)	Vehicle() // empty constructor. This should call constructor b) with wheels =
 
 using namespace std;
 
-class Vehicle
+
+void CreateVehicle(Vehicle& v, int w = 4, int d = 2)
 {
-public:
-	Vehicle(int w, int d)
-	{
-		numWheels = w;
-		numDoors = d;
-		cout << "In constructor with 2 parameters" << endl;
-	}
+	v.setNumWheels(w);
+	v.setNumDoors(d);
+}
 
-	Vehicle(int w): Vehicle(w, 4)
-	{
-		cout << "In constructor with 1 parameters, wheels = " << w << endl;
-	}
 
-	Vehicle(): Vehicle(4)
-	{
-		cout << "In constructor with 0 parameters" << endl;
-	}
 
-	~Vehicle()
-	{
-		cout << "In destructor" << endl;
-	}
+int main(int argc, char** argv)
+{
+	Vehicle original;    //empty constructor no ( )
 
-private:
-	int numWheels;
-	int numDoors;
+	Vehicle copy(original); // copy constructor by reference
+	Vehicle secondCopy(&original); //copy constructor by pointer
 
-};
+	copy.printVehicle();
+	CreateVehicle(copy, 2); //wheels is 2, everything else is default value
+	copy.printVehicle();
+	CreateVehicle(copy, 2, 3); //wheels is 2, doors is 3
+	copy.printVehicle();
+	copy = secondCopy;
+	copy.printVehicle();	// copy is same as second copy
+	return 0;
+}
 
-int main(int argc, char **argv)
+
+
+int main_backup(int argc, char **argv)
 {
 	
 	int d, w;
@@ -80,6 +77,12 @@ int main(int argc, char **argv)
 	cout << "Vehicle takes " << sizeof(veh3) << endl;
 
 	std::cout << "I made a vehicle!" << std::endl;
+
+	// Vehicle veh4 = veh3;
+
+	Vehicle secondCopy(&veh3);
+
+	// Vehicle* veh5 = &veh3;
 
 
 	return 0;
