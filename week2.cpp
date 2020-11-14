@@ -50,11 +50,37 @@ private:
 
 int main(int argc, char **argv)
 {
-   std::cout << "Hello World!" << std::endl;
+	
+	int d, w;
+	std::string ans;
+	Vehicle* pVehicle;
 
-   Vehicle myVehicle(4, 2); //This calls constructor Vehicle( int, int);
-   std::cout << "I made a vehicle!" << std::endl;
+	do {
+		cout << "enter number of doors" << endl;
+		cin >> d;
+		cout << "enter number of wheels" << endl;
+		cin >> w;
+
+		pVehicle = new Vehicle(w, d);
+		delete pVehicle;
+
+		cout << "Do you want to create a new vehicle or quit" << endl;
+		cin >> ans;
+	}
+	while (ans != "q");
 
 
-   return 0;
+	Vehicle veh1; // This calls constructor Vehicle()
+	cout << "Vehicle takes " << sizeof(veh1) << endl;
+
+	Vehicle veh2(4); //This calls constructor Vehicle(int);
+	cout << "Vehicle takes " << sizeof(veh2) << endl;
+
+	Vehicle veh3(4, 2); //This calls constructor Vehicle( int, int);
+	cout << "Vehicle takes " << sizeof(veh3) << endl;
+
+	std::cout << "I made a vehicle!" << std::endl;
+
+
+	return 0;
 }
