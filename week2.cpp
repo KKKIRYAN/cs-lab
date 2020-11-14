@@ -36,12 +36,11 @@ public:
 	{
 		cout << "In constructor with 0 parameters" << endl;
 	}
-	
+
 	~Vehicle()
 	{
 		cout << "In destructor" << endl;
 	}
-
 
 private:
 	int numWheels;
@@ -52,5 +51,10 @@ private:
 int main(int argc, char **argv)
 {
    std::cout << "Hello World!" << std::endl;
+
+   Vehicle myVehicle = Vehicle(); // This calls constructor Vehicle()
+   std::cout << "I made a vehicle!" << std::endl;
+
+
    return 0;
 }
