@@ -1,18 +1,17 @@
 #include<iostream>
 
 #include "Vehicle.h"
-
-
+#include "ElectricVehicle.h" 
+#include "GasolineVehicle.h"
+#include "HybridVehicle.h"
 
 using namespace std;
-
 
 void CreateVehicle(Vehicle& v, int w = 4, int d = 2)
 {
 	v.setNumWheels(w);
 	v.setNumDoors(d);
 }
-
 
 Vehicle* testVehicle(Vehicle* pVehicle, const char* vehicleName)
 {
@@ -23,7 +22,6 @@ Vehicle* testVehicle(Vehicle* pVehicle, const char* vehicleName)
 
 	return pVehicle;
 }
-
 
 int main(int argc, char** argv)
 {

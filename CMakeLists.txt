@@ -3,4 +3,8 @@ cmake_minimum_required(VERSION 2.8.9)
 
 project (hello)
 
-add_executable(hello week2.cpp Vehicle.cpp Vehicle.h)
+add_executable(hello week2.cpp
+	Vehicle.h Vehicle.cpp
+	ElectricVehicle.h ElectricVehicle.cpp
+	GasolineVehicle.h GasolineVehicle.cpp
+	HybridVehicle.h HybridVehicle.cpp)
